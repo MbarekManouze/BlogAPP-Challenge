@@ -14,7 +14,7 @@ const BlogForm = () => {
 
   const insertEmoji = () => {
     setBlogText(blogText + emoji);
-    setEmoji(''); // Clear emoji input after adding to the text
+    setEmoji('');
   };
 
   return (
@@ -23,8 +23,8 @@ const BlogForm = () => {
         value={blogText}
         onChange={handleTextChange}
         placeholder="Enter your blog text..."
-        rows={10} // Adjust the number of rows according to your preference
-        cols={50} // Adjust the number of columns according to your preference
+        rows={10}
+        cols={50}
       />
       <br />
       <input
