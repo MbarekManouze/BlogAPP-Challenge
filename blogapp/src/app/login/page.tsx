@@ -1,13 +1,41 @@
 "use client"
 
 import { useState } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const route = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    try {
+      await axios.post('/api/login', {
+        email,
+        password,
+      })
+      .then((data) => {
+        console.log("then login : ", data);
+      })
+      .catch((error) => {
+        console.log('catch login : ', error);
+      });
+
+      setInterval(() => {
+        route.push('/blogpost');
+
+      }, 2000);
+
+      console.log('Login successful!');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+
+
     console.log('Email:', email);
     console.log('Password:', password);
   };

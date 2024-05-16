@@ -14,7 +14,6 @@ datasource db {
 }
 
 
-// Define the User model
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -23,10 +22,8 @@ model User {
   Blogs     BlogPost[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  // Add any other user-related fields here
 }
 
-// Define the BlogPost model
 model BlogPost {
   id        Int      @id @default(autoincrement())
   title     String

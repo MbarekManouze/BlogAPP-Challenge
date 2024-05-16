@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar";
+import Navbar from "../components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,15 +11,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  isAuthenticated,
   children,
 }: Readonly<{
   children: React.ReactNode;
+  isAuthenticated: boolean;
+  
 }>) {
   return (
     <html>
       <body>
         <div>
-          <Navbar />
+          <Navbar isAuthenticated={isAuthenticated}/>
           <main>{children}</main>
         </div>
       </body>

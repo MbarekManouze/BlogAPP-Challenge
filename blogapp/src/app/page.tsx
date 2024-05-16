@@ -1,9 +1,26 @@
-import Navbar from "./components/navbar";
+"use client"
+import { useEffect } from "react";
+import Maincontent  from "../components/maincontent"
+import { NextApiRequest } from "next";
+import { useRouter } from "next/navigation";
+import cookie from 'js-cookie'; 
 
-export default function Home() {
+
+export default function Home(req: NextApiRequest) {
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const token = cookie.get('token');
+
+    if (!token)
+        router.push('/login');
+  })
+
   return (
-      <main className="">
-        <p>hello there</p>   
-      </main>
+      <div className="">
+        <Maincontent />
+      </div>
     );
 }
+

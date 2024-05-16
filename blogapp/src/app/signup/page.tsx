@@ -1,33 +1,60 @@
 "use client"
 import { useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setname] = useState('');
-
-
+  const [errors, setErrors] = useState([]);
+  const [Uerror, setUerror] = useState('');
+  
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     try{
-      const response = await axios.post('/api/register', {
+      await axios.post('/api/register', {
         name, 
         email,
         password,
-      });
-      console.log(response.data.token);
-  
-      console.log('Email:', email);
-      console.log('Password:', password);
+      })
+      .then((data) => {})
+      .catch((error)=>{
+        if (error.response.status == 409)
+          setUerror(error.response.data.errors);
+        else
+          setUerror('');
+          setErrors(error.response.data.errors || []);
+        return ;
+      })
+      router.push('/login');
     }
-    catch(error){}
+    catch(error){
+      console.log(error);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+        {Uerror ? (
+          <p className="text-red-500 mb-2">{Uerror}</p>
+        ) : (
+          <div>
+            {errors.length > 0 && (
+              <div>
+                {errors.map((error, index) => (
+                  <p key={index} className="text-red-500 mb-2">
+                    <span>{error?.path}: </span><span>{error?.msg}</span>
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
         <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name</label>
