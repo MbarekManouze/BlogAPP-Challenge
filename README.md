@@ -11,11 +11,12 @@ Clone the repository to your local machine:
 
 Navigate to the project directory:
 
-cd blogapp
+- cd blogapp
 
 Run the **setup** command to start the development environment:
 
-**npm run setup**
+- **npm run setup**
+  
 This command will start the Docker containers, install dependencies, run database migrations, and start the development server.
 
 Access the application at **http://localhost:3000** in your web browser.
