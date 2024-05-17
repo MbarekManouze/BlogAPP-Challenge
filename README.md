@@ -7,7 +7,7 @@ To set up the project locally, follow these steps:
 
 Clone the repository to your local machine:
 
-git clone git@github.com:MbarekManouze/BlogAPP-Challenge.git
+- git clone **git@github.com:MbarekManouze/BlogAPP-Challenge.git**
 
 Navigate to the project directory:
 
