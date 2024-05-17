@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
-import { PrismaClient ,Prisma}  from '@prisma/client';
+import { PrismaClient }  from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
@@ -24,7 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(401).json({ error: 'Invalid password' });
       }
 
-      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || '', { expiresIn: '7d' });
+
       res.setHeader('Set-Cookie', `token=${token}; Path=/; Max-Age=${60 * 60 * 24 * 7}`)
           .status(200).json({msg: 'User found'});
 

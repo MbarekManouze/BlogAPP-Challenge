@@ -1,10 +1,11 @@
 "use client"
-import BlogForm from "@/components/addbloForm";
+
+import Maincontent from "@/components/maincontent";
 import { useRouter } from 'next/navigation';
 import cookie from 'js-cookie';
 import { useEffect } from 'react';
 
-const Form = () => {
+const Blogs = () => {
     const router = useRouter();
 
     useEffect(() => {
@@ -15,13 +16,13 @@ const Form = () => {
           router.push('/login');
         }
       }, [router]);
-
+    
     return (
-        <>
-            <BlogForm />
-        </>
+        <div>
+            <Maincontent />
+        </div>
     );
 
-}
+}  
 
-export default Form;
+export default Blogs;

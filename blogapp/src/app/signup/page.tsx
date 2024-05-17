@@ -20,7 +20,7 @@ const Signup = () => {
         email,
         password,
       })
-      .then((data) => {})
+      .then(() => {})
       .catch((error)=>{
         if (error.response.status == 409)
           setUerror(error.response.data.errors);

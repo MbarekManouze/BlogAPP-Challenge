@@ -11,18 +11,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  isAuthenticated,
   children,
 }: Readonly<{
   children: React.ReactNode;
-  isAuthenticated: boolean;
   
 }>) {
   return (
     <html>
       <body>
         <div>
-          <Navbar isAuthenticated={isAuthenticated}/>
+          <Navbar />
           <main>{children}</main>
         </div>
       </body>

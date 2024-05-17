@@ -1,21 +1,23 @@
 "use client"
-import { useEffect } from "react";
+
 import Maincontent  from "../components/maincontent"
-import { NextApiRequest } from "next";
-import { useRouter } from "next/navigation";
-import cookie from 'js-cookie'; 
+import { useRouter } from 'next/navigation';
+import cookie from 'js-cookie';
+import { useEffect } from 'react';
 
 
-export default function Home(req: NextApiRequest) {
-
-  const router = useRouter()
+export default function Home() {
+  const router = useRouter();
 
   useEffect(() => {
-    const token = cookie.get('token');
-
-    if (!token)
+      const token = cookie.get('token');
+  
+      console.log("token : ", token);
+      if (!token) {
         router.push('/login');
-  })
+      }
+    }, [router]);
+  
 
   return (
       <div className="">

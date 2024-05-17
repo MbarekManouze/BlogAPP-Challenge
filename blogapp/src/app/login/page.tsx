@@ -2,13 +2,10 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const route = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +23,7 @@ const Login = () => {
       });
 
       setInterval(() => {
-        route.push('/blogpost');
+        window.location.href = '/explore';
 
       }, 2000);
 

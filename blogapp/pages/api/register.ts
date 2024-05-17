@@ -13,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long').run(req),
         check('name').notEmpty().withMessage('Name is required').run(req),
       ]);
+
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         console.log(errors.array())
@@ -23,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const hashedPassword = await bcrypt.hash(password, 10);
       try {
         console.log('im hereeeeeeeeee\n');
-        const user = await prisma.user.create({
+        await prisma.user.create({
           data: {
             username: name,
             email: email,

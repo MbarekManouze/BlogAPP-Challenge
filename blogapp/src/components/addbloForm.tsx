@@ -1,20 +1,22 @@
 "use client"
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const BlogForm = () => {
     const [title, setTitle] = useState('');
     const [content, setcontent] = useState('');
-  
+    const router = useRouter();
+    
     const handleTitleChange = (e) => {
-      setTitle(e.target.value);
+        setTitle(e.target.value);
     };
-  
+    
     const handleTextChange = (e) => {
-      setcontent(e.target.value);
+        setcontent(e.target.value);
     };
-  
+    
     const handleSubmit = async () => {
         console.log('Title:', title);
         console.log('Blog Text:', content);
@@ -22,12 +24,13 @@ const BlogForm = () => {
         await axios.post('/api/setBlogs', {
             content,
             title,
+            task: "post",
         })
-        .then((data) => {
-
+        .then(() => {
+                router.push('/explore');
         })
-        .catch((error) => {
-
+        .catch(() => {
+    
         })
     };
   
